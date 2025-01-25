@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/25 21:28:23 by emalungo          #+#    #+#             */
-/*   Updated: 2025/01/25 22:38:56 by emalungo         ###   ########.fr       */
+/*   Created: 2025/01/25 22:23:00 by emalungo          #+#    #+#             */
+/*   Updated: 2025/01/25 22:34:22 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "../../include/cub3d.h"
 
-# include "../libft/libft.h"
-# include "../mlx/mlx.h"
-# include <errno.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <sys/time.h>
-# include <unistd.h>
+int	check_extension(const char *str)
+{
+	int	len;
 
-// ./SRC/UTILS.C
-
-int	input_validation(int argc, char **argv);
-int	check_extension(const char *str);
-
-#endif
+	len = ft_strlen(str);
+	if (len < 4)
+		return (0);
+	if (str[len - 4] == '.' && str[len - 3] == 'c')
+	{
+		if (str[len - 2] == 'u' && str[len - 1] == 'b')
+			return (1);
+		return (0);
+	}
+	return (0);
+}

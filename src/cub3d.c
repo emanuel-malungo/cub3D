@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 21:31:46 by emalungo          #+#    #+#             */
-/*   Updated: 2025/01/25 21:40:46 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/01/25 22:46:51 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	if (argc == 2)
-		printf("%s\n", argv[1]);
-	return (0);
+	if (!input_validation(argc, argv))
+		return (0);
+	return (1);
 }
