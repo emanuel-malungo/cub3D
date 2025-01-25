@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 21:28:23 by emalungo          #+#    #+#             */
-/*   Updated: 2025/01/25 22:38:56 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/01/25 23:11:24 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,22 @@
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
 # include <errno.h>
+# include <fcntl.h>
+# include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <string.h>
 # include <sys/time.h>
 # include <unistd.h>
 
+typedef struct s_game
+{
+	int	fd;
+}		t_game;
+
 // ./SRC/UTILS.C
 
-int	input_validation(int argc, char **argv);
-int	check_extension(const char *str);
+t_game	*init_struct_game(void);
+int		input_validation(int argc, char **argv);
+int		check_extension(const char *str);
 
 #endif

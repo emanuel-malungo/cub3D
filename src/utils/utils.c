@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_handling.c                                   :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/25 22:18:51 by emalungo          #+#    #+#             */
-/*   Updated: 2025/01/25 23:12:52 by emalungo         ###   ########.fr       */
+/*   Created: 2025/01/25 23:00:32 by emalungo          #+#    #+#             */
+/*   Updated: 2025/01/25 23:11:55 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int	input_validation(int argc, char **argv)
+t_game	*init_struct_game(void)
 {
-	if (argc != 2)
+	t_game	*game;
+
+	game = malloc(sizeof(t_game));
+	if (!game)
 	{
-		ft_putstr_fd("Error:\nUsage: ./cub3d <map_file>\n", 2);
-		return (0);
+		ft_putstr_fd("Error: Memory allocation failed.\n", 2);
+		return (NULL);
 	}
-	if (!check_extension(argv[1]))
-	{
-		ft_putstr_fd("Error:\nInvalid file extension.\n", 2);
-		return (0);
-	}
-	return (1);
+	ft_memset(game, 0, sizeof(t_game));
+	return (game);
 }
