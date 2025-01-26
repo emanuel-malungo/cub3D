@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 22:23:00 by emalungo          #+#    #+#             */
-/*   Updated: 2025/01/26 07:36:48 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/01/26 07:52:59 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,20 +83,17 @@ int	check_wall_map(t_game *game)
 
 int	check_map_elements_invalid(t_game *game)
 {
-	int	i;
-	int	j;
-
+	int i, j;
 	i = 0;
 	while (game->m.map[i])
 	{
 		j = 0;
 		while (game->m.map[i][j])
 		{
-			if ((game->m.map[i][j] != '1') && (game->m.map[i][j] != 'N')
-				&& (game->m.map[i][j] != '0'))
-			{
+			if (game->m.map[i][j] != '1' && game->m.map[i][j] != '0'
+				&& game->m.map[i][j] != 'N' && game->m.map[i][j] != 'S'
+				&& game->m.map[i][j] != 'E' && game->m.map[i][j] != 'W')
 				return (0);
-			}
 			j++;
 		}
 		i++;
