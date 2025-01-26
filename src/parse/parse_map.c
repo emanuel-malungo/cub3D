@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 00:11:59 by emalungo          #+#    #+#             */
-/*   Updated: 2025/01/26 06:54:11 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/01/26 07:04:19 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	*ft_realloc(void *ptr, size_t new_size, size_t old_size)
 	return (new_ptr);
 }
 
-void	parse(t_game *game)
+static void	parse_content_file(t_game *game)
 {
 	int	i;
 	int	map_index;
@@ -62,7 +62,7 @@ void	parse(t_game *game)
 	}
 }
 
-void	*read_and_resize_buffer(t_game *game, size_t *t_read, size_t *buffer_s)
+static void	*read_and_resize_buffer(t_game *game, size_t *t_read, size_t *buffer_s)
 {
 	ssize_t	bytes_r;
 	char	*temp;
@@ -90,7 +90,7 @@ void	*read_and_resize_buffer(t_game *game, size_t *t_read, size_t *buffer_s)
 	return (game->m.buffer);
 }
 
-void	*read_map(t_game *game)
+static void	*read_content_file(t_game *game)
 {
 	char	*buffer;
 	size_t	t_read;
@@ -113,7 +113,7 @@ void	*read_map(t_game *game)
 
 void	read_parse_file(t_game *game)
 {
-	if (!read_map(game) || !game->m.buffer)
+	if (!read_content_file(game) || !game->m.buffer)
 	{
 		ft_putstr_fd("Error:\nReading map failed\n", 2);
 		clean_game(game, 1);
@@ -131,7 +131,7 @@ void	read_parse_file(t_game *game)
 		ft_putstr_fd("Error:\nSplitting map failed\n", 2);
 		clean_game(game, 1);
 	}
-	parse(game);
+	parse_content_file(game);
 	if (!check_parse(game))
 		clean_game(game, 1);
 }

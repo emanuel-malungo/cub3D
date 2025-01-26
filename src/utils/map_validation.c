@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 22:23:00 by emalungo          #+#    #+#             */
-/*   Updated: 2025/01/25 22:34:22 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/01/26 07:09:14 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,29 @@ int	check_extension(const char *str)
 		return (0);
 	}
 	return (0);
+}
+
+int	check_map_shape(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	game->m.cols = 0;
+	game->m.rows = 0;
+	while (game->m.map[0][game->m.cols])
+		game->m.cols++;
+	while (game->m.map[game->m.rows])
+		game->m.rows++;
+	while (game->m.map[i])
+	{
+		j = 0;
+		while (game->m.map[i][j])
+			j++;
+		if (game->m.cols != j)
+			return (0);
+		i++;
+	}
+	return (1);
 }

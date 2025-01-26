@@ -6,13 +6,13 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 01:49:03 by emalungo          #+#    #+#             */
-/*   Updated: 2025/01/26 06:53:22 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/01/26 07:03:27 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	clean_arr(t_game *game)
+static void	clean_arr(t_game *game)
 {
 	int	i;
 
@@ -56,7 +56,7 @@ void	clean_game(t_game *game, int mod)
 	}
 }
 
-int	check_texture_parse(t_game *game)
+static int	check_texture_parse(t_game *game)
 {
 	if (!game->m.path_north)
 	{
