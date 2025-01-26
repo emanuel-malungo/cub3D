@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 22:18:51 by emalungo          #+#    #+#             */
-/*   Updated: 2025/01/26 07:28:04 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/01/26 07:41:44 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ void	map_validation(t_game *game)
 	if (!check_wall_map(game))
 	{
 		ft_putstr_fd("Error:\nInvalid walls.\n", 2);
+		clean_game(game, 1);
+	}
+	if (!check_map_elements_invalid(game))
+	{
+		ft_putstr_fd("Error:\nInvalid elements found in the map.\n", 2);
 		clean_game(game, 1);
 	}
 }
