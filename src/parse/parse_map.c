@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 00:11:59 by emalungo          #+#    #+#             */
-/*   Updated: 2025/01/26 13:41:17 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/01/26 14:42:07 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ void	read_parse_file(t_game *game)
 		ft_putstr_fd("Error:\nFile cannot start with a newline\n", 2);
 		clean_game(game, 1);
 	}
+	validate_map_lines(game);
 	game->m.content = ft_split(game->m.buffer, '\n');
 	free(game->m.buffer);
 	if (!game->m.content)

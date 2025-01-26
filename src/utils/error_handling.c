@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 22:18:51 by emalungo          #+#    #+#             */
-/*   Updated: 2025/01/26 13:40:43 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/01/26 14:44:45 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,27 @@ void	map_validation(t_game *game)
 	}
 }
 
-void	validate_unique_entries(t_game *game)
+void	validate_map_lines(t_game *game)
 {
 	int	i;
+
+	i = 0;
+	while (game->m.buffer[i])
+	{
+		if (game->m.buffer[i] == '\n' && game->m.buffer[i + 1] == '\n')
+		{
+			ft_putstr_fd("Error:\nMap cannot have two consecutive empty lines\n",
+				2);
+			free(game->m.buffer);
+			clean_game(game, 1);
+		}
+		i++;
+	}
+}
+
+void	validate_unique_entries(t_game *game)
+{
+	int i;
 
 	i = -1;
 	while (game->m.content[++i])

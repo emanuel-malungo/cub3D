@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 22:23:00 by emalungo          #+#    #+#             */
-/*   Updated: 2025/01/26 08:03:08 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/01/26 14:33:37 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,8 @@ int	check_valid_map_characters(t_game *game)
 		{
 			if (game->m.map[i][j] != '1' && game->m.map[i][j] != '0'
 				&& game->m.map[i][j] != 'N' && game->m.map[i][j] != 'S'
-				&& game->m.map[i][j] != 'E' && game->m.map[i][j] != 'W')
+				&& game->m.map[i][j] != 'E' && game->m.map[i][j] != 'W'
+				&& game->m.map[i][j] != 'W')
 				return (0);
 			j++;
 		}
