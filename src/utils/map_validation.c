@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 22:23:00 by emalungo          #+#    #+#             */
-/*   Updated: 2025/01/26 07:09:14 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/01/26 07:25:21 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,34 @@ int	check_map_shape(t_game *game)
 		while (game->m.map[i][j])
 			j++;
 		if (game->m.cols != j)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	check_wall_map(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (game->m.map[0][i])
+	{
+		if (game->m.map[0][i] != '1')
+			return (0);
+		i++;
+	}
+	i = 0;
+	while (i < game->m.rows)
+	{
+		if (game->m.map[i][0] != '1' || game->m.map[i][game->m.cols - 1] != '1')
+			return (0);
+		i++;
+	}
+	i = 0;
+	while (game->m.map[game->m.rows - 1][i])
+	{
+		if (game->m.map[game->m.rows - 1][i] != '1')
 			return (0);
 		i++;
 	}

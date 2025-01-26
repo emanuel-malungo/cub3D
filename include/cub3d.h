@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 21:28:23 by emalungo          #+#    #+#             */
-/*   Updated: 2025/01/26 07:14:08 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/01/26 07:25:52 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void		map_validation(t_game *game);
 void		clean_game(t_game *game, int mod);
 int			check_extension(const char *str);
 int			check_map_shape(t_game *game);
+int			check_wall_map(t_game *game);
 int			input_validation(int argc, char **argv);
 
 // ./SRC/PARSE/PARSE_MAP.C
