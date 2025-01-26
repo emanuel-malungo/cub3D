@@ -6,11 +6,29 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 21:31:46 by emalungo          #+#    #+#             */
-/*   Updated: 2025/01/26 02:36:34 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/01/26 06:55:04 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void	print_parse(t_game *game)
+{
+	int	i;
+
+	printf("North Texture Path: %s\n", game->m.path_north);
+	printf("South Texture Path: %s\n", game->m.path_south);
+	printf("West Texture Path: %s\n", game->m.path_to_west);
+	printf("East Texture Path: %s\n", game->m.path_east);
+	printf("Floor Color: %s\n", game->m.floor_color);
+	printf("Ceiling Color: %s\n", game->m.ceiling_color);
+	i = 0;
+	while (game->m.map[i])
+	{
+		printf("%s\n", game->m.map[i]);
+		i++;
+	}
+}
 
 int	main(int argc, char **argv)
 {
@@ -27,18 +45,8 @@ int	main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	read_parse_file(game);
-	printf("North Texture Path: %s\n", game->m.path_north);
-	printf("South Texture Path: %s\n", game->m.path_south);
-	printf("West Texture Path: %s\n", game->m.path_to_west);
-	printf("East Texture Path: %s\n", game->m.path_east);
-	printf("Floor Color: %s\n", game->m.floor_color);
-	printf("Ceiling Color: %s\n", game->m.ceiling_color);
-    // int i = 0;
-    // while (game->m.map[i])
-    // {
-    //     printf("%s\n", game->m.map[i]);
-    //     i++;
-    // }
-	close(game->m.fd);
+	print_parse(game);
+	clean_game(game, 0);
+	free(game);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 00:11:59 by emalungo          #+#    #+#             */
-/*   Updated: 2025/01/26 02:37:47 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/01/26 06:54:11 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,36 +35,31 @@ void	*ft_realloc(void *ptr, size_t new_size, size_t old_size)
 	return (new_ptr);
 }
 
-void parse(t_game *game)
+void	parse(t_game *game)
 {
-    int i;
+	int	i;
+	int	map_index;
 
-    i = 0;
-    while (game->m.content[i])
-    {
-        if (ft_strncmp(game->m.content[i], "NO ", 3) == 0)
-            game->m.path_north = ft_strdup(game->m.content[i] + 3);
-        else if (ft_strncmp(game->m.content[i], "SO ", 3) == 0)
-            game->m.path_south = ft_strdup(game->m.content[i] + 3);
-        else if (ft_strncmp(game->m.content[i], "WE ", 3) == 0)
-            game->m.path_to_west = ft_strdup(game->m.content[i] + 3);
-        else if (ft_strncmp(game->m.content[i], "EA ", 3) == 0)
-            game->m.path_east = ft_strdup(game->m.content[i] + 3);
-        else if (ft_strncmp(game->m.content[i], "F ", 2) == 0)
-            game->m.floor_color = ft_strdup(game->m.content[i] + 2);
-        else if (ft_strncmp(game->m.content[i], "C ", 2) == 0)
-            game->m.ceiling_color = ft_strdup(game->m.content[i] + 2);
-        else if (game->m.content[i][0] == '1' || game->m.content[i][0] == '0'
-                || game->m.content[i][0] == 'N' || game->m.content[i][0] == ' ')
-        {
-            if (!game->m.map)
-                game->m.map = ft_split(game->m.content[i], '\n');
-            else
-                game->m.map = ft_realloc(game->m.map, (i + 2) * sizeof(char*), (i + 1) * sizeof(char*));
-            game->m.map[i] = ft_strdup(game->m.content[i]);
-        }
-        i++;
-    }
+	i = 0;
+	map_index = 0;
+	while (game->m.content[i])
+	{
+		if (ft_strncmp(game->m.content[i], "NO ", 3) == 0)
+			game->m.path_north = ft_strdup(game->m.content[i] + 3);
+		else if (ft_strncmp(game->m.content[i], "SO ", 3) == 0)
+			game->m.path_south = ft_strdup(game->m.content[i] + 3);
+		else if (ft_strncmp(game->m.content[i], "WE ", 3) == 0)
+			game->m.path_to_west = ft_strdup(game->m.content[i] + 3);
+		else if (ft_strncmp(game->m.content[i], "EA ", 3) == 0)
+			game->m.path_east = ft_strdup(game->m.content[i] + 3);
+		else if (ft_strncmp(game->m.content[i], "F ", 2) == 0)
+			game->m.floor_color = ft_strdup(game->m.content[i] + 2);
+		else if (ft_strncmp(game->m.content[i], "C ", 2) == 0)
+			game->m.ceiling_color = ft_strdup(game->m.content[i] + 2);
+		else if (game->m.content[i][0] == '1' || game->m.content[i][0] == '0')
+			handle_map_line(game, game->m.content[i], &map_index);
+		i++;
+	}
 }
 
 void	*read_and_resize_buffer(t_game *game, size_t *t_read, size_t *buffer_s)
@@ -116,29 +111,27 @@ void	*read_map(t_game *game)
 	return (game->m.buffer);
 }
 
-void read_parse_file(t_game *game)
+void	read_parse_file(t_game *game)
 {
-    if (!read_map(game) || !game->m.buffer)
-    {
-        ft_putstr_fd("Error:\n reading map", 2);
-        exit(1);
-    }
-
-    if (game->m.buffer[0] == '\n')
-    {
-        free(game->m.buffer);
-        ft_putstr_fd("Error:\n map cannot start with a newline\n", 2);
-        exit(1);
-    }
-
-    game->m.content = ft_split(game->m.buffer, '\n');
-    free(game->m.buffer);
-    if (!game->m.content)
-    {
-        ft_putstr_fd("Error:\n splitting map\n", 2);
-        exit(1);
-    }
-    parse(game);
+	if (!read_map(game) || !game->m.buffer)
+	{
+		ft_putstr_fd("Error:\nReading map failed\n", 2);
+		clean_game(game, 1);
+	}
+	if (game->m.buffer[0] == '\n')
+	{
+		free(game->m.buffer);
+		ft_putstr_fd("Error:\nMap cannot start with a newline\n", 2);
+		clean_game(game, 1);
+	}
+	game->m.content = ft_split(game->m.buffer, '\n');
+	free(game->m.buffer);
+	if (!game->m.content)
+	{
+		ft_putstr_fd("Error:\nSplitting map failed\n", 2);
+		clean_game(game, 1);
+	}
+	parse(game);
 	if (!check_parse(game))
-		exit(1);
+		clean_game(game, 1);
 }
