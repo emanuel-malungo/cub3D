@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 01:49:03 by emalungo          #+#    #+#             */
-/*   Updated: 2025/01/26 07:03:27 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/01/26 13:40:29 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,3 +106,5 @@ void	handle_map_line(t_game *game, char *line, int *map_index)
 	(*map_index)++;
 	game->m.map[*map_index] = NULL;
 }
+
+

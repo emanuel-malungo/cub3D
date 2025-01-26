@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 21:28:23 by emalungo          #+#    #+#             */
-/*   Updated: 2025/01/26 07:59:36 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/01/26 13:40:58 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ typedef struct s_map
 	char	*path_south;
 	char	*path_to_west;
 	char	*path_east;
+	int		count_no;
+	int		count_so;
+	int		count_we;
+	int		count_ea;
+	int		count_f;
+	int		count_c;
 }			t_map;
 
 typedef struct s_game
@@ -49,6 +55,7 @@ typedef struct s_game
 t_game		*init_struct_game(void);
 void		map_validation(t_game *game);
 void		clean_game(t_game *game, int mod);
+void		validate_unique_entries(t_game *game);
 int			check_extension(const char *str);
 int			check_map_shape(t_game *game);
 int			check_wall_map(t_game *game);
