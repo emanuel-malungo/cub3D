@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 22:18:51 by emalungo          #+#    #+#             */
-/*   Updated: 2025/01/26 07:47:35 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/01/26 08:01:15 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,14 @@ void	map_validation(t_game *game)
 		ft_putstr_fd("Error:\nInvalid walls.\n", 2);
 		clean_game(game, 1);
 	}
-	if (!check_map_elements_invalid(game))
+	if (!check_valid_map_characters(game))
 	{
 		ft_putstr_fd("Error:\nInvalid elements found in the map.\n", 2);
+		clean_game(game, 1);
+	}
+	if (!check_single_spawn_point(game))
+	{
+		ft_putstr_fd("Error:\nThere must be exactly one spawn point.\n", 2);
 		clean_game(game, 1);
 	}
 }
