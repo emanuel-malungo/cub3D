@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 21:28:23 by emalungo          #+#    #+#             */
-/*   Updated: 2025/01/26 14:42:37 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/02/20 10:54:32 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # include <stdlib.h>
 # include <sys/time.h>
 # include <unistd.h>
+
+# define SCREEN_WIDTH 800
+# define SCREEN_HEIGHT 600
 
 typedef struct s_map
 {
@@ -45,9 +48,17 @@ typedef struct s_map
 	int		count_c;
 }			t_map;
 
+typedef struct s_mlx
+{
+	void *mlx_ptr;
+	void *win_ptr;
+}
+t_mlx;
+
 typedef struct s_game
 {
 	t_map	m;
+	t_mlx	mlx;
 }			t_game;
 
 // ./SRC/UTILS/UTILS.C
@@ -71,5 +82,8 @@ int			check_parse(t_game *game);
 void		parse_path_texture(t_game *game, int i);
 void		*ft_realloc(void *ptr, size_t new_size, size_t old_size);
 void		handle_map_line(t_game *game, char *line, int *map_index);
+
+// ./SRC/GAME/GAME.C
+int			init_game(t_game *game);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 21:31:46 by emalungo          #+#    #+#             */
-/*   Updated: 2025/01/26 14:09:59 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/02/20 10:55:04 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ int	main(int argc, char **argv)
 	print_parse(game);
 	map_validation(game);
 	validate_colors(game);
+	init_game(game);
 	clean_game(game, 0);
 	free(game);
-	return (1);
+	return (0);
 }

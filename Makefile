@@ -15,6 +15,7 @@ SRCS = $(SRCDIR)/cub3d.c \
 	   $(SRCDIR)/utils/map_validation.c \
 	   $(SRCDIR)/parse/parse_map.c \
 	   $(SRCDIR)/parse/parse_utils.c \
+	    $(SRCDIR)/game/game.c \
 	   
 
 OBJS = $(SRCS:.c=.o)
