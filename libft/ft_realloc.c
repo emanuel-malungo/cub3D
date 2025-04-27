@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emalungo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/20 10:37:50 by emalungo          #+#    #+#             */
-/*   Updated: 2024/05/20 10:37:59 by emalungo         ###   ########.fr       */
+/*   Created: 2025/03/16 00:07:45 by emalungo          #+#    #+#             */
+/*   Updated: 2025/03/16 00:07:59 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+void	*ft_realloc(void *ptr, size_t new_size, size_t old_size)
 {
-	if (!lst || !f)
-		return ;
-	while (lst)
-	{
-		f(lst->content);
-		lst = lst->next;
-	}
+    void	*new_ptr;
+
+    new_ptr = malloc(new_size);
+    if (!new_ptr)
+    {
+        free(ptr);
+        return (NULL);
+    }
+    ft_memcpy(new_ptr, ptr, old_size);
+    free(ptr);
+    return (new_ptr);
 }

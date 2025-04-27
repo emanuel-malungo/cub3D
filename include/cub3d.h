@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/25 21:28:23 by emalungo          #+#    #+#             */
-/*   Updated: 2025/01/26 14:42:37 by emalungo         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -22,54 +10,77 @@
 # include <stdlib.h>
 # include <sys/time.h>
 # include <unistd.h>
+#include <string.h>
+#include <math.h>
+
+# define WIDTH 800
+# define HEIGHT 600
+
+# define KEY_W 119
+# define KEY_A 100
+# define KEY_S 115
+# define KEY_D 97
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
+# define KEY_ESC 65307
+
+#define WALL_COLOR 0x4A4A4A    // Cinza escuro para paredes
+#define FLOOR_COLOR 0xB3B3B3   // Cinza claro para chão
+#define PLAYER_COLOR 0xFFD700   // Dourado para jogador
+#define BACKGROUND_COLOR 0x1A1A1A // Preto escuro para fundo
 
 typedef struct s_map
 {
 	int		fd;
-	int		cols;
-	int		rows;
 	char	**map;
-	char	*buffer;
-	char	*floor_color;
-	char	*ceiling_color;
 	char	**content;
 	char	*path_north;
 	char	*path_south;
 	char	*path_to_west;
 	char	*path_east;
-	int		count_no;
-	int		count_so;
-	int		count_we;
-	int		count_ea;
-	int		count_f;
-	int		count_c;
+	char	*floor_color;
+	char	*ceiling_color;
 }			t_map;
 
-typedef struct s_game
+typedef struct s_player
+{
+	double	posX;
+	double	posY;
+	double	dirX;
+	double	dirY;
+	double	planeX;
+	double	planeY;
+}			t_player;
+
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}			t_img;
+
+typedef struct cub3d
 {
 	t_map	m;
-}			t_game;
+	t_player p;
+	void	*mlx_ptr;
+	void	*mlx_win_ptr;
+	t_img	img;
+}			t_cub3d;
 
-// ./SRC/UTILS/UTILS.C
 
-t_game		*init_struct_game(void);
-void		map_validation(t_game *game);
-void		validate_colors(t_game *game);
-void		validate_map_lines(t_game *game);
-void		clean_game(t_game *game, int mod);
-void		validate_unique_entries(t_game *game);
-int			check_extension(const char *str);
-int			check_map_shape(t_game *game);
-int			check_wall_map(t_game *game);
-int			check_single_spawn_point(t_game *game);
-int			check_valid_map_characters(t_game *game);
-int			input_validation(int argc, char **argv);
+// ./src/utils/utils.c
+t_cub3d		*init_cub3d(void);
+int			init_game(t_cub3d *cub3d);
+int			read_file(t_cub3d *cub3d);
+void		parse_content_file(t_cub3d *cub3d);
 
-// ./SRC/PARSE/PARSE_MAP.C
-void		read_parse_file(t_game *game);
-int			check_parse(t_game *game);
-void		parse_path_texture(t_game *game, int i);
-void		*ft_realloc(void *ptr, size_t new_size, size_t old_size);
-void		handle_map_line(t_game *game, char *line, int *map_index);
+// ./src/utils/error_handling.c
+int			check_input_and_open_file(char argc, char *file, t_cub3d **cub3d);
+
+// ./src/utils/render.c
+int	render_map(t_cub3d *cub3d);
 
 #endif

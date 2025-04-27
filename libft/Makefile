@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: emalungo <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/20 10:53:13 by emalungo          #+#    #+#              #
-#    Updated: 2024/05/20 10:53:23 by emalungo         ###   ########.fr        #
+#    Updated: 2025/03/16 00:08:50 by emalungo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ FILES = ft_atoi ft_bzero ft_isalnum ft_isalpha ft_tolower \
 		ft_strlcpy ft_strlen ft_strncmp ft_calloc ft_strrchr \
 		ft_memmove ft_strdup ft_strnstr ft_strjoin ft_putchar_fd \
 		ft_putstr_fd ft_putendl_fd ft_putnbr_fd ft_strmapi \
-		ft_strtrim ft_substr ft_split ft_itoa ft_striteri
+		ft_strtrim ft_substr ft_split ft_itoa ft_striteri get_next_line ft_realloc
 
 FILES_B = 	ft_lstadd_back ft_lstadd_front ft_lstclear \
  			ft_lstdelone ft_lstiter ft_lstlast \

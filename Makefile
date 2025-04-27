@@ -9,12 +9,9 @@ LIBFTDIR = libft
 MLXDIR = mlx
 
 SRCS = $(SRCDIR)/cub3d.c \
-       $(SRCDIR)/utils/utils.c \
+	   $(SRCDIR)/utils/utils.c \
 	   $(SRCDIR)/utils/error_handling.c \
-	   $(SRCDIR)/utils/validate_colors.c \
-	   $(SRCDIR)/utils/map_validation.c \
-	   $(SRCDIR)/parse/parse_map.c \
-	   $(SRCDIR)/parse/parse_utils.c \
+	   $(SRCDIR)/utils/render.c \
 	   
 
 OBJS = $(SRCS:.c=.o)

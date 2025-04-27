@@ -5,50 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/25 21:31:46 by emalungo          #+#    #+#             */
-/*   Updated: 2025/01/26 14:09:59 by emalungo         ###   ########.fr       */
+/*   Created: 2025/03/15 21:40:29 by emalungo          #+#    #+#             */
+/*   Updated: 2025/04/06 15:24:11 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	print_parse(t_game *game)
-{
-	int	i;
-
-	printf("North Texture Path: %s\n", game->m.path_north);
-	printf("South Texture Path: %s\n", game->m.path_south);
-	printf("West Texture Path: %s\n", game->m.path_to_west);
-	printf("East Texture Path: %s\n", game->m.path_east);
-	printf("Floor Color: %s\n", game->m.floor_color);
-	printf("Ceiling Color: %s\n", game->m.ceiling_color);
-	i = 0;
-	while (game->m.map[i])
-	{
-		printf("%s\n", game->m.map[i]);
-		i++;
-	}
-}
-
 int	main(int argc, char **argv)
 {
-	t_game	*game;
+	t_cub3d *cub3d;
 
-	if (!input_validation(argc, argv))
+	if (!check_input_and_open_file(argc, argv[1], &cub3d))
 		return (0);
-	game = init_struct_game();
-	game->m.fd = open(argv[1], O_RDONLY);
-	if (game->m.fd == -1)
-	{
-		free(game);
-		ft_putstr_fd("Error: Cannot open file.\n", 2);
-		exit(EXIT_FAILURE);
-	}
-	read_parse_file(game);
-	print_parse(game);
-	map_validation(game);
-	validate_colors(game);
-	clean_game(game, 0);
-	free(game);
-	return (1);
+	if (!read_file(cub3d))
+		return (0);
+	parse_content_file(cub3d);
+	if (init_game(cub3d))
+		return (0);
+	free(cub3d);
+	return (0);
 }
