@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:23:39 by emalungo          #+#    #+#             */
-/*   Updated: 2025/04/29 13:58:03 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/04/29 14:06:25 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,16 +87,7 @@ int	ray_casting(t_cub3d *cub3d)
 	double	perpWallDist;
 
 	i = 0;
-	for (int y = 0; y < HEIGHT_SCREEN; y++)
-	{
-		for (int x = 0; x < WIDTH_SCREEN; x++)
-		{
-			if (y < HEIGHT_SCREEN / 2)
-				my_mlx_pixel_put(&cub3d->img, x, y, 0x6CB8DD); // Teto azul
-			else
-				my_mlx_pixel_put(&cub3d->img, x, y, 0x4A4A4A); // Chão preto
-		}
-	}
+    draw_background(cub3d);
 	while (i < WIDTH_SCREEN)
 	{
 		ray = calculate_ray(cub3d, i);

@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 12:40:59 by emalungo          #+#    #+#             */
-/*   Updated: 2025/04/29 13:56:20 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/04/29 14:08:31 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,36 @@ void	draw_square(t_cub3d *cub3d, int x, int y, int size, int color)
 	}
 }
 
-void	draw_vertical_line(t_cub3d *cub3d, int x, int drawStart, int drawEnd, int color)
+void	draw_vertical_line(t_cub3d *cub3d, int x, int drawStart, int drawEnd,
+		int color)
 {
 	int	y;
 
 	y = drawStart;
 	while (y <= drawEnd)
 	{
-		my_mlx_pixel_put(&cub3d->img, x, y, color );
+		my_mlx_pixel_put(&cub3d->img, x, y, color);
 		y++;
 	}
 }
 
+void	draw_background(t_cub3d *cub3d)
+{
+	int	x;
+	int	y;
 
+	y = 0;
+	while (y < HEIGHT_SCREEN)
+	{
+		x = 0;
+		while (x < WIDTH_SCREEN)
+		{
+			if (y < HEIGHT_SCREEN / 2)
+				my_mlx_pixel_put(&cub3d->img, x, y, 0x6CB8DD);
+			else
+				my_mlx_pixel_put(&cub3d->img, x, y, 0x4A4A4A);
+			x++;
+		}
+        y++;
+	}
+}

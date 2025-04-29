@@ -52,22 +52,22 @@ typedef struct s_player
 
 typedef struct s_ray
 {
-	double rayDirX;    // Direção do raio em X
-	double rayDirY;    // Direção do raio em Y
-	int mapX;          // Coordenada X atual no mapa
-	int mapY;          // Coordenada Y atual no mapa
-	double sideDistX;  // Distância ao próximo lado X
-	double sideDistY;  // Distância ao próximo lado Y
-	double deltaDistX; // Distância entre lados X
-	double deltaDistY; // Distância entre lados Y
-	int stepX;         // Direção do passo em X (+1 ou -1)
-	int stepY;         // Direção do passo em Y (+1 ou -1)
-	int side;          // 0 para lado X, 1 para lado Y
-	double cameraX;    // Coordenada da câmera no espaço da tela
-	int lineHeight;    // Altura da linha a desenhar
-	int drawStart;     // Início da linha na tela
-	int drawEnd;       // Fim da linha na tela
-	int color;         // Cor do pixel a desenhar
+	double		rayDirX;
+	double		rayDirY;
+	int			mapX;
+	int			mapY;
+	double		sideDistX;
+	double		sideDistY;
+	double		deltaDistX;
+	double		deltaDistY;
+	int			stepX;
+	int			stepY;
+	int			side;
+	double		cameraX;
+	int			lineHeight;
+	int			drawStart;
+	int			drawEnd;
+	int			color;
 }				t_ray;
 
 typedef struct s_img
@@ -104,8 +104,7 @@ void			get_player_position(t_cub3d *cub3d);
 int				ray_casting(t_cub3d *cub3d);
 
 // ./src/draw.c
-void			my_mlx_pixel_put(t_img *img, int x, int y, int color);
-void			draw_square(t_cub3d *cub3d, int x, int y, int size, int color);
+void			draw_background(t_cub3d *cub3d);
 void			draw_vertical_line(t_cub3d *cub3d, int x, int drawStart,
 					int drawEnd, int color);
 
