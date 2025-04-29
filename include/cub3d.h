@@ -5,16 +5,18 @@
 # include "../mlx/mlx.h"
 # include <errno.h>
 # include <fcntl.h>
+# include <math.h>
 # include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <string.h>
 # include <sys/time.h>
 # include <unistd.h>
-#include <string.h>
-#include <math.h>
 
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH_SCREEN 800
+# define HEIGHT_SCREEN 600
+
+# define WALL_COLOR 0xD5D5D5
 
 # define KEY_W 119
 # define KEY_A 100
@@ -24,63 +26,87 @@
 # define KEY_RIGHT 65363
 # define KEY_ESC 65307
 
-#define WALL_COLOR 0x4A4A4A    // Cinza escuro para paredes
-#define FLOOR_COLOR 0xB3B3B3   // Cinza claro para chão
-#define PLAYER_COLOR 0xFFD700   // Dourado para jogador
-#define BACKGROUND_COLOR 0x1A1A1A // Preto escuro para fundo
-
 typedef struct s_map
 {
-	int		fd;
-	char	**map;
-	char	**content;
-	char	*path_north;
-	char	*path_south;
-	char	*path_to_west;
-	char	*path_east;
-	char	*floor_color;
-	char	*ceiling_color;
-}			t_map;
+	int			fd;
+	char		**map;
+	char		**content;
+	char		*path_north;
+	char		*path_south;
+	char		*path_to_west;
+	char		*path_east;
+	char		*floor_color;
+	char		*ceiling_color;
+}				t_map;
 
 typedef struct s_player
 {
-	double	posX;
-	double	posY;
-	double	dirX;
-	double	dirY;
-	double	planeX;
-	double	planeY;
-}			t_player;
+	double		posX;
+	double		posY;
+	double		dirX;
+	double		dirY;
+	double		planeX;
+	double		planeY;
+	double		cameraX;
+}				t_player;
+
+typedef struct s_ray
+{
+	double rayDirX;    // Direção do raio em X
+	double rayDirY;    // Direção do raio em Y
+	int mapX;          // Coordenada X atual no mapa
+	int mapY;          // Coordenada Y atual no mapa
+	double sideDistX;  // Distância ao próximo lado X
+	double sideDistY;  // Distância ao próximo lado Y
+	double deltaDistX; // Distância entre lados X
+	double deltaDistY; // Distância entre lados Y
+	int stepX;         // Direção do passo em X (+1 ou -1)
+	int stepY;         // Direção do passo em Y (+1 ou -1)
+	int side;          // 0 para lado X, 1 para lado Y
+	double cameraX;    // Coordenada da câmera no espaço da tela
+	int lineHeight;    // Altura da linha a desenhar
+	int drawStart;     // Início da linha na tela
+	int drawEnd;       // Fim da linha na tela
+	int color;         // Cor do pixel a desenhar
+}				t_ray;
 
 typedef struct s_img
 {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}			t_img;
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+}				t_img;
 
 typedef struct cub3d
 {
-	t_map	m;
-	t_player p;
-	void	*mlx_ptr;
-	void	*mlx_win_ptr;
-	t_img	img;
-}			t_cub3d;
+	t_map		m;
+	t_player	p;
+	void		*mlx_ptr;
+	void		*mlx_win_ptr;
+	t_img		img;
+	t_ray		r;
+}				t_cub3d;
 
-
-// ./src/utils/utils.c
-t_cub3d		*init_cub3d(void);
-int			init_game(t_cub3d *cub3d);
-int			read_file(t_cub3d *cub3d);
-void		parse_content_file(t_cub3d *cub3d);
+// ./src/utils.c
+t_cub3d			*init_cub3d(int argc, char **argv);
+int				init_game(t_cub3d *cub3d);
+int				read_file(t_cub3d *cub3d);
+void			parse_content_file(t_cub3d *cub3d);
 
 // ./src/utils/error_handling.c
-int			check_input_and_open_file(char argc, char *file, t_cub3d **cub3d);
 
-// ./src/utils/render.c
-int	render_map(t_cub3d *cub3d);
+// ./src/utils/player.c
+void			get_player_position(t_cub3d *cub3d);
+
+// ./src/ray_casting.c
+int				ray_casting(t_cub3d *cub3d);
+
+// ./src/draw.c
+void			my_mlx_pixel_put(t_img *img, int x, int y, int color);
+void			draw_square(t_cub3d *cub3d, int x, int y, int size, int color);
+void			draw_vertical_line(t_cub3d *cub3d, int x, int drawStart,
+					int drawEnd, int color);
 
 #endif
