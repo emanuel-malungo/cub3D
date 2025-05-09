@@ -106,6 +106,7 @@ int	init_game(t_cub3d *cub3d)
 		return (0);
 	}
 	get_player_position(cub3d);
+	load_all_textures(cub3d);
 	cub3d->img.img = mlx_new_image(cub3d->mlx_ptr, WIDTH_SCREEN, HEIGHT_SCREEN);
 	cub3d->img.addr = mlx_get_data_addr(cub3d->img.img,
 			&cub3d->img.bits_per_pixel, &cub3d->img.line_length,

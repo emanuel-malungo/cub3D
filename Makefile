@@ -15,6 +15,8 @@ SRCS = $(SRCDIR)/cub3d.c \
 	   $(SRCDIR)/draw.c \
 	   $(SRCDIR)/ray_casting.c \
 	   $(SRCDIR)/game.c \
+	   $(SRCDIR)/texture.c \
+
 	   
 
 OBJS = $(SRCS:.c=.o)

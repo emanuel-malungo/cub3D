@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ray_casting.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/29 10:23:39 by emalungo          #+#    #+#             */
-/*   Updated: 2025/04/29 14:06:25 by emalungo         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../include/cub3d.h"
 
 void	perform_dda(t_cub3d *cub3d, t_ray *ray)
@@ -59,6 +47,7 @@ void	init_ray_steps(t_cub3d *cub3d, t_ray *ray)
 		ray->sideDistY = (ray->mapY + 1.0 - cub3d->p.posY) * ray->deltaDistY;
 	}
 }
+
 t_ray	calculate_ray(t_cub3d *cub3d, int i)
 {
 	t_ray	ray;
@@ -80,14 +69,50 @@ t_ray	calculate_ray(t_cub3d *cub3d, int i)
 	return (ray);
 }
 
+void	draw_texture_line(t_cub3d *cub3d, int x, t_ray *ray, double wallX)
+{
+	int		y;
+	double	step;
+	double	texPos;
+	int		texX;
+	int		texY;
+	t_img	*texture;
+	int		color;
+
+	if (ray->side == 0 && ray->rayDirX > 0)
+		texture = &cub3d->m.texture_west;
+	else if (ray->side == 0 && ray->rayDirX < 0)
+		texture = &cub3d->m.texture_east;
+	else if (ray->side == 1 && ray->rayDirY > 0)
+		texture = &cub3d->m.texture_north;
+	else
+		texture = &cub3d->m.texture_south;
+
+	texX = (int)(wallX * (double)texture->width);
+	if ((ray->side == 0 && ray->rayDirX > 0) || (ray->side == 1 && ray->rayDirY < 0))
+		texX = texture->width - texX - 1;
+	step = 1.0 * texture->height / ray->lineHeight;
+	texPos = (ray->drawStart - HEIGHT_SCREEN / 2 + ray->lineHeight / 2) * step;
+	y = ray->drawStart;
+	while (y < ray->drawEnd)
+	{
+		texY = (int)texPos & (texture->height - 1);
+		texPos += step;
+		color = get_pixel_color(texture, texX, texY);
+		my_mlx_pixel_put(&cub3d->img, x, y, color);
+		y++;
+	}
+}
+
 int	ray_casting(t_cub3d *cub3d)
 {
 	t_ray	ray;
 	int		i;
 	double	perpWallDist;
+	double	wallX;
 
 	i = 0;
-    draw_background(cub3d);
+	draw_background(cub3d);
 	while (i < WIDTH_SCREEN)
 	{
 		ray = calculate_ray(cub3d, i);
@@ -106,13 +131,15 @@ int	ray_casting(t_cub3d *cub3d)
 		if (ray.drawEnd >= HEIGHT_SCREEN)
 			ray.drawEnd = HEIGHT_SCREEN - 1;
 		if (ray.side == 0)
-			cub3d->r.color = WALL_COLOR;
+			wallX = cub3d->p.posY + perpWallDist * ray.rayDirY;
 		else
-			cub3d->r.color = WALL_COLOR - 0x202020;
-		draw_vertical_line(cub3d, i, ray.drawStart, ray.drawEnd, cub3d->r.color);
+			wallX = cub3d->p.posX + perpWallDist * ray.rayDirX;
+		wallX -= floor(wallX);
+		draw_texture_line(cub3d, i, &ray, wallX);
 		i++;
 	}
-	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->mlx_win_ptr, cub3d->img.img,
-		0, 0);
+	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->mlx_win_ptr,
+		cub3d->img.img, 0, 0);
 	return (1);
 }
+

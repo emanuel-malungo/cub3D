@@ -26,17 +26,32 @@
 # define KEY_RIGHT 65363
 # define KEY_ESC 65307
 
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		width;
+	int		height;
+}				t_img;
+
 typedef struct s_map
 {
-	int			fd;
-	char		**map;
-	char		**content;
-	char		*path_north;
-	char		*path_south;
-	char		*path_to_west;
-	char		*path_east;
-	char		*floor_color;
-	char		*ceiling_color;
+	int		fd;
+	char	**map;
+	char	**content;
+	char	*path_north;
+	char	*path_south;
+	char	*path_to_west;
+	char	*path_east;
+	char	*floor_color;
+	char	*ceiling_color;
+	t_img	texture_north;
+	t_img	texture_south;
+	t_img	texture_west;
+	t_img	texture_east;
 }				t_map;
 
 typedef struct s_player
@@ -70,15 +85,6 @@ typedef struct s_ray
 	int			color;
 }				t_ray;
 
-typedef struct s_img
-{
-	void		*img;
-	char		*addr;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
-}				t_img;
-
 typedef struct cub3d
 {
 	t_map		m;
@@ -102,6 +108,13 @@ void			get_player_position(t_cub3d *cub3d);
 
 // ./src/ray_casting.c
 int				ray_casting(t_cub3d *cub3d);
+void				draw_texture_line(t_cub3d *cub3d, int x, t_ray *ray, double wallX);
+// ./src/draw.c
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
+
+// ./src/texture.c
+int		get_pixel_color(t_img *texture, int x, int y);
+void	load_all_textures(t_cub3d *cub3d);
 
 // ./src/draw.c
 void			draw_background(t_cub3d *cub3d);
