@@ -9,15 +9,8 @@ LIBFTDIR = libft
 MLXDIR = mlx
 
 SRCS = $(SRCDIR)/cub3d.c \
+	   $(SRCDIR)/parse.c \
 	   $(SRCDIR)/utils.c \
-	   $(SRCDIR)/error_handling.c \
-	   $(SRCDIR)/player.c \
-	   $(SRCDIR)/draw.c \
-	   $(SRCDIR)/ray_casting.c \
-	   $(SRCDIR)/game.c \
-	   $(SRCDIR)/texture.c \
-
-	   
 
 OBJS = $(SRCS:.c=.o)
 LIBFT = $(LIBFTDIR)/libft.a

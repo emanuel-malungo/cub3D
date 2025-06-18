@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/29 09:29:57 by emalungo          #+#    #+#             */
-/*   Updated: 2025/04/29 09:51:56 by emalungo         ###   ########.fr       */
+/*   Created: 2025/06/16 13:28:31 by emalungo          #+#    #+#             */
+/*   Updated: 2025/06/17 13:26:24 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../includes/cub3d.h"
 
 int	main(int argc, char **argv)
 {
@@ -18,23 +18,20 @@ int	main(int argc, char **argv)
 
 	cub3d = init_cub3d(argc, argv);
 	if (!cub3d)
-		return (0);
-	cub3d->m.fd = open(argv[1], O_RDONLY);
-	if (cub3d->m.fd < 0)
+		return (1);
+	if (!parse(cub3d))
 	{
-		ft_putstr_fd("Error\nCould not open file\n", 2);
-		return (0);
-	}
-	if (!read_file(cub3d))
-	{
-		close(cub3d->m.fd);
-		return (0);
-	}
-	parse_content_file(cub3d);
-	if (!init_game(cub3d))
-	{
-		close(cub3d->m.fd);
-		return (0);
-	}
-	return (1);
+        return (1);
+    }
+    printf("Path north: %s\n", cub3d->m.path_north);
+    printf("Path east: %s\n", cub3d->m.path_east);
+    printf("Path south: %s\n", cub3d->m.path_south);
+    printf("Path west: %s\n", cub3d->m.path_west);
+    printf("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+\n");
+    printf("Path floor color: %s\n", cub3d->m.floor_color);
+    printf("Path ceiling color: %s\n", cub3d->m.ceiling_color);
+	close(cub3d->fd);
+	free(cub3d);
+	printf("Sucess\n");
+	return (0);
 }

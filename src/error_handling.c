@@ -5,9 +5,9 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/29 09:47:11 by emalungo          #+#    #+#             */
-/*   Updated: 2025/04/29 09:52:29 by emalungo         ###   ########.fr       */
+/*   Created: 2025/06/17 14:19:17 by emalungo          #+#    #+#             */
+/*   Updated: 2025/06/17 14:19:28 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../includes/cub3d.h"
