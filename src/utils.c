@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 11:42:52 by emalungo          #+#    #+#             */
-/*   Updated: 2025/06/24 09:24:24 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/06/30 12:09:49 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,19 @@ t_cub3d	*init_cub3d(int argc, char **argv)
 		return (0);
 	}
 	return (cub3d);
+}
+
+void	ft_free_matrix(char **matrix)
+{
+	int	i;
+
+	if (!matrix)
+		return ;
+	i = 0;
+	while (matrix[i])
+	{
+		free(matrix[i]);
+		i++;
+	}
+	free(matrix);
 }

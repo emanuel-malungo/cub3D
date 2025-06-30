@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 11:44:06 by emalungo          #+#    #+#             */
-/*   Updated: 2025/06/30 10:29:32 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/06/30 12:56:12 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,15 @@ static int	read_file(t_cub3d *cub3d)
 	}
 	if (!content)
 	{
+		free(cub3d);
 		ft_putstr_fd("Erro:\nCould not read file\n", 2);
 		return (0);
 	}
 	cub3d->file_content = ft_split(content, '\n');
+	free(content);
 	if (is_map_line(cub3d->file_content[0]))
 	{
+		ft_free_matrix(cub3d->file_content);
 		ft_putstr_fd("Error\nMap content appears before textures or colors\n",
 			2);
 		return (0);
@@ -127,7 +130,7 @@ int	parse(t_cub3d *cub3d)
 	}
 	// if (!validate_texture_paths(cub3d))
 	// 	return (0);
-	validate_colors(cub3d);
+	// validate_colors(cub3d);
 	parse_map_content(cub3d);
 	return (1);
 }

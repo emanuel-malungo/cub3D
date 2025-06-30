@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:30:04 by emalungo          #+#    #+#             */
-/*   Updated: 2025/06/30 10:28:57 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/06/30 12:09:58 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_cub3d
 }			t_cub3d;
 
 // ./src/utils.c
+void		ft_free_matrix(char **matrix);
 t_cub3d		*init_cub3d(int argc, char **argv);
 
 // ./src/parse.c

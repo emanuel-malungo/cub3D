@@ -6,26 +6,11 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 13:50:02 by emalungo          #+#    #+#             */
-/*   Updated: 2025/06/26 14:04:33 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/06/30 12:10:16 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-static void	ft_free_split(char **split)
-{
-	int	i;
-
-	if (!split)
-		return ;
-	i = 0;
-	while (split[i])
-	{
-		free(split[i]);
-		i++;
-	}
-	free(split);
-}
 
 static int	is_digit_string(const char *str)
 {
@@ -107,10 +92,10 @@ void	validate_colors(t_cub3d *cub3d)
 	values = ft_split(cub3d->m.floor_color, ',');
 	if (!values || !validate_color_format(values, "floor"))
 	{
-		ft_free_split(values);
+		ft_free_matrix(values);
 		exit(1);
 	}
-	ft_free_split(values);
+	ft_free_matrix(values);
 
 	if (comma_number(cub3d->m.ceiling_color) != 2)
 	{
@@ -120,9 +105,9 @@ void	validate_colors(t_cub3d *cub3d)
 	values = ft_split(cub3d->m.ceiling_color, ',');
 	if (!values || !validate_color_format(values, "ceiling"))
 	{
-		ft_free_split(values);
+		ft_free_matrix(values);
 		exit(1);
 	}
-	ft_free_split(values);
+	ft_free_matrix(values);
 }
 
