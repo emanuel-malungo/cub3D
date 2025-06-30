@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:30:04 by emalungo          #+#    #+#             */
-/*   Updated: 2025/06/17 13:13:13 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/06/30 10:28:57 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,19 @@ typedef struct s_cub3d
 }			t_cub3d;
 
 // ./src/utils.c
-int			check_extension(char *str);
 t_cub3d		*init_cub3d(int argc, char **argv);
 
 // ./src/parse.c
 int			parse(t_cub3d *cub3d);
+
+// ./src/error_handling.c
+int			check_extension(char *str);
+int			check_required_identifiers(t_cub3d *cub3d);
+
+// ./src/validate_texture.c
+int			validate_texture_paths(t_cub3d *cub3d);
+
+// ./src/validate_colors.c
+void		validate_colors(t_cub3d *cub3d);
 
 #endif

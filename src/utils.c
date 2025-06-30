@@ -6,28 +6,11 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 11:42:52 by emalungo          #+#    #+#             */
-/*   Updated: 2025/06/17 11:43:05 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/06/24 09:24:24 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-int	check_extension(char *str)
-{
-	int		len;
-	char	*temp;
-
-	len = ft_strlen(str);
-	temp = ft_substr(str, len - 4, 4);
-	if (ft_strncmp(temp, ".cub", 4) != 0)
-	{
-		free(temp);
-		ft_putstr_fd("Error\nInvalid file extension. Use .cub\n", 2);
-		return (0);
-	}
-	free(temp);
-	return (1);
-}
 
 t_cub3d	*init_cub3d(int argc, char **argv)
 {

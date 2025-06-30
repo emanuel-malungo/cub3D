@@ -1,16 +1,19 @@
-NAME = cub3d
 CC = cc
+NAME = cub3d
 CFLAGS = -Wall -Wextra -Werror
 INCLUDES = -Iinclude -Ilibft -Imlx
 
+MLXDIR = mlx
 SRCDIR = src
 INCDIR = include
 LIBFTDIR = libft
-MLXDIR = mlx
 
 SRCS = $(SRCDIR)/cub3d.c \
-	   $(SRCDIR)/parse.c \
-	   $(SRCDIR)/utils.c \
+       $(SRCDIR)/parse.c \
+       $(SRCDIR)/utils.c \
+       $(SRCDIR)/error_handling.c \
+       $(SRCDIR)/validate_colors.c \
+       $(SRCDIR)/validate_texture.c \
 
 OBJS = $(SRCS:.c=.o)
 LIBFT = $(LIBFTDIR)/libft.a
