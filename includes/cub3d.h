@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:30:04 by emalungo          #+#    #+#             */
-/*   Updated: 2025/06/30 12:09:58 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/07/01 11:53:21 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct s_map
 	char	*path_east;
 	char	*floor_color;
 	char	*ceiling_color;
+	int		width;
+	int		heigth;
 }			t_map;
 
 typedef struct s_cub3d
@@ -54,5 +56,9 @@ int			validate_texture_paths(t_cub3d *cub3d);
 
 // ./src/validate_colors.c
 void		validate_colors(t_cub3d *cub3d);
+
+// ./src/validate_map.c
+int			check_map_wall(t_cub3d *cub3d);
+int			check_elements_map(char **map);
 
 #endif

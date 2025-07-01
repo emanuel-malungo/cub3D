@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 13:50:02 by emalungo          #+#    #+#             */
-/*   Updated: 2025/06/30 12:10:16 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/07/01 11:04:11 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,4 +110,3 @@ void	validate_colors(t_cub3d *cub3d)
 	}
 	ft_free_matrix(values);
 }
-

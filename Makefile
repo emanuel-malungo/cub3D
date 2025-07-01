@@ -11,6 +11,7 @@ LIBFTDIR = libft
 SRCS = $(SRCDIR)/cub3d.c \
        $(SRCDIR)/parse.c \
        $(SRCDIR)/utils.c \
+	   $(SRCDIR)/validate_map.c \
        $(SRCDIR)/error_handling.c \
        $(SRCDIR)/validate_colors.c \
        $(SRCDIR)/validate_texture.c \

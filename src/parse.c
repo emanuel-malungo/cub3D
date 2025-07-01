@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 11:44:06 by emalungo          #+#    #+#             */
-/*   Updated: 2025/06/30 12:56:12 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/07/01 12:00:18 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ static int	parse_map_content(t_cub3d *cub3d)
 
 int	parse(t_cub3d *cub3d)
 {
-	int	i;
+	int		i;
+	char	*temp;
 
 	i = -1;
 	if (!read_file(cub3d))
@@ -99,38 +100,48 @@ int	parse(t_cub3d *cub3d)
 	{
 		if (ft_strncmp(cub3d->file_content[i], "NO ", 3) == 0)
 		{
-			cub3d->m.path_north = ft_strdup(cub3d->file_content[i] + 3);
-			cub3d->m.path_east = ft_strtrim(cub3d->m.path_east, " ");
+			temp = ft_strdup(cub3d->file_content[i] + 3);
+			cub3d->m.path_east = ft_strtrim(temp, " ");
+			free(temp);
 		}
 		else if (ft_strncmp(cub3d->file_content[i], "SO ", 3) == 0)
 		{
-			cub3d->m.path_south = ft_strdup(cub3d->file_content[i] + 3);
-			cub3d->m.path_south = ft_strtrim(cub3d->m.path_south, " ");
+			temp = ft_strdup(cub3d->file_content[i] + 3);
+			cub3d->m.path_south = ft_strtrim(temp, " ");
+			free(temp);
 		}
 		else if (ft_strncmp(cub3d->file_content[i], "WE ", 3) == 0)
 		{
-			cub3d->m.path_west = ft_strdup(cub3d->file_content[i] + 3);
-			cub3d->m.path_west = ft_strtrim(cub3d->m.path_west, " ");
+			temp = ft_strdup(cub3d->file_content[i] + 3);
+			cub3d->m.path_west = ft_strtrim(temp, " ");
+			free(temp);
 		}
 		else if (ft_strncmp(cub3d->file_content[i], "EA ", 3) == 0)
 		{
-			cub3d->m.path_east = ft_strdup(cub3d->file_content[i] + 3);
-			cub3d->m.path_east = ft_strtrim(cub3d->m.path_east, " ");
+			temp = ft_strdup(cub3d->file_content[i] + 3);
+			cub3d->m.path_east = ft_strtrim(temp, " ");
+			free(temp);
 		}
 		else if (ft_strncmp(cub3d->file_content[i], "F ", 2) == 0)
 		{
-			cub3d->m.floor_color = ft_strdup(cub3d->file_content[i] + 2);
-			cub3d->m.floor_color = ft_strtrim(cub3d->m.floor_color, " ");
+			temp = ft_strdup(cub3d->file_content[i] + 2);
+			cub3d->m.floor_color = ft_strtrim(temp, " ");
+			free(temp);
 		}
 		else if (ft_strncmp(cub3d->file_content[i], "C ", 2) == 0)
 		{
-			cub3d->m.ceiling_color = ft_strdup(cub3d->file_content[i] + 2);
-			cub3d->m.ceiling_color = ft_strtrim(cub3d->m.ceiling_color, " ");
+			temp = ft_strdup(cub3d->file_content[i] + 2);
+			cub3d->m.ceiling_color = ft_strtrim(temp, " ");
+			free(temp);
 		}
 	}
 	// if (!validate_texture_paths(cub3d))
 	// 	return (0);
 	// validate_colors(cub3d);
 	parse_map_content(cub3d);
+	if (!check_elements_map(cub3d->m.map_content))
+		return (0);
+	if (!check_map_wall(cub3d))
+		return (0);
 	return (1);
 }

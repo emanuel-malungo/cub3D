@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:28:31 by emalungo          #+#    #+#             */
-/*   Updated: 2025/06/30 12:28:08 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/06/30 13:09:55 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	main(int argc, char **argv)
 		return (1);
 	if (!parse(cub3d))
 	{
-		write(2, "aaaaa", 5);
 		close(cub3d->fd);
 		free(cub3d->m.path_north);
 		free(cub3d->m.path_east);
@@ -46,13 +45,13 @@ int	main(int argc, char **argv)
 	close(cub3d->fd);
 	ft_free_matrix(cub3d->file_content);
 	ft_free_matrix(cub3d->m.map_content);
-	// free(cub3d->m.path_north);
-	// free(cub3d->m.path_east);
-	// free(cub3d->m.path_south);
-	// free(cub3d->m.path_west);
-	// free(cub3d->m.floor_color);
-	// free(cub3d->m.ceiling_color);
-	// free(cub3d);
+	free(cub3d->m.path_north);
+	free(cub3d->m.path_east);
+	free(cub3d->m.path_south);
+	free(cub3d->m.path_west);
+	free(cub3d->m.floor_color);
+	free(cub3d->m.ceiling_color);
+	free(cub3d);
 	printf("Sucess\n");
 	return (0);
 }
