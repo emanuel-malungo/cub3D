@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 11:44:06 by emalungo          #+#    #+#             */
-/*   Updated: 2025/07/01 14:01:02 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/07/01 16:06:17 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	read_file(t_cub3d *cub3d)
 	if (!content)
 	{
 		free(cub3d);
-		ft_putstr_fd("Erro:\nCould not read file\n", 2);
+		ft_putstr_fd("Error:\nCould not read file\n", 2);
 		return (0);
 	}
 	cub3d->file_content = ft_split(content, '\n');
@@ -53,8 +53,7 @@ static int	read_file(t_cub3d *cub3d)
 	if (is_map_line(cub3d->file_content[0]))
 	{
 		ft_free_matrix(cub3d->file_content);
-		ft_putstr_fd("Error\nMap content appears before textures or colors\n",
-			2);
+		ft_putstr_fd("Error\nMap content appears before textures or colors\n", 2);
 		return (0);
 	}
 	return (1);
