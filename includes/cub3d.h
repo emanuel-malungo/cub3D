@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:30:04 by emalungo          #+#    #+#             */
-/*   Updated: 2025/07/01 11:53:21 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/07/03 00:51:26 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
+# include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
@@ -42,6 +43,7 @@ typedef struct s_cub3d
 
 // ./src/utils.c
 void		ft_free_matrix(char **matrix);
+void		cleanup_cub3d(t_cub3d *cub3d);
 t_cub3d		*init_cub3d(int argc, char **argv);
 
 // ./src/parse.c

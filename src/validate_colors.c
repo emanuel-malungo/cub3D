@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 13:50:02 by emalungo          #+#    #+#             */
-/*   Updated: 2025/07/01 11:04:11 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/07/03 00:53:06 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	validate_colors(t_cub3d *cub3d)
 	if (comma_number(cub3d->m.floor_color) != 2)
 	{
 		ft_putstr_fd("Error:\nInvalid floor color format: expected 2 commas\n", 2);
+		cleanup_cub3d(cub3d);
 		exit(1);
 	}
 	values = ft_split(cub3d->m.floor_color, ',');
@@ -100,12 +101,14 @@ void	validate_colors(t_cub3d *cub3d)
 	if (comma_number(cub3d->m.ceiling_color) != 2)
 	{
 		ft_putstr_fd("Error:\nInvalid ceiling color format: expected 2 commas\n", 2);
+		cleanup_cub3d(cub3d);
 		exit(1);
 	}
 	values = ft_split(cub3d->m.ceiling_color, ',');
 	if (!values || !validate_color_format(values, "ceiling"))
 	{
 		ft_free_matrix(values);
+		cleanup_cub3d(cub3d);
 		exit(1);
 	}
 	ft_free_matrix(values);

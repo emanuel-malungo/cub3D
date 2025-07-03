@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:28:31 by emalungo          #+#    #+#             */
-/*   Updated: 2025/07/02 17:31:18 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/07/03 00:51:17 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,7 @@ int	main(int argc, char **argv)
 		return (1);
 	if (!parse(cub3d))
 	{
-		close(cub3d->fd);
-		free(cub3d->m.path_north);
-		free(cub3d->m.path_east);
-		free(cub3d->m.path_south);
-		free(cub3d->m.floor_color);
-		free(cub3d->m.ceiling_color);
-		free(cub3d);
+		cleanup_cub3d(cub3d);
 		return (1);
 	}
 	printf("Path north: %s\n", cub3d->m.path_north);
@@ -42,16 +36,7 @@ int	main(int argc, char **argv)
 	i = -1;
 	while (cub3d->m.map_content[++i])
 		printf("%s\n", cub3d->m.map_content[i]);
-	close(cub3d->fd);
-	ft_free_matrix(cub3d->file_content);
-	ft_free_matrix(cub3d->m.map_content);
-	free(cub3d->m.path_north);
-	free(cub3d->m.path_east);
-	free(cub3d->m.path_south);
-	free(cub3d->m.path_west);
-	free(cub3d->m.floor_color);
-	free(cub3d->m.ceiling_color);
-	free(cub3d);
+	cleanup_cub3d(cub3d);
 	printf("Sucess\n");
 	return (0);
 }
