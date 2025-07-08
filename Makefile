@@ -10,7 +10,12 @@ LIBFTDIR = libft
 
 SRCS = $(SRCDIR)/cub3d.c \
        $(SRCDIR)/parse.c \
+	   $(SRCDIR)/draw.c \
+	   $(SRCDIR)/move.c \
        $(SRCDIR)/utils.c \
+	   $(SRCDIR)/player.c \
+	   $(SRCDIR)/texture.c \
+	   $(SRCDIR)/ray_casting.c \
 	   $(SRCDIR)/validate_map.c \
        $(SRCDIR)/error_handling.c \
        $(SRCDIR)/validate_colors.c \

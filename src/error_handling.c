@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:19:17 by emalungo          #+#    #+#             */
-/*   Updated: 2025/06/30 10:28:44 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/07/03 03:12:21 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ int	check_extension(char *str)
 
 int	check_required_identifiers(t_cub3d *cub3d)
 {
-	int	i;
-	int	count_no;
-	int	count_so;
-	int	count_we;
-	int	count_ea;
-	int	count_f;
-	int	count_c;
+	int i;
+	int count_no;
+	int count_so;
+	int count_we;
+	int count_ea;
+	int count_f;
+	int count_c;
 
 	i = 0;
 	count_no = 0;

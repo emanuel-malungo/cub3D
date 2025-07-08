@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 11:42:52 by emalungo          #+#    #+#             */
-/*   Updated: 2025/07/03 00:58:24 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/07/08 11:43:14 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_cub3d	*init_cub3d(int argc, char **argv)
 		return (NULL);
 	}
 	ft_bzero(cub3d, sizeof(t_cub3d));
-	cub3d->fd = -1;  // Initialize fd to -1 before opening
+	cub3d->fd = -1;
 	cub3d->fd = open(argv[1], O_RDONLY);
 	if (cub3d->fd < 0)
 	{
@@ -66,14 +66,14 @@ void	cleanup_cub3d(t_cub3d *cub3d)
 		ft_free_matrix(cub3d->file_content);
 	if (cub3d->m.map_content)
 		ft_free_matrix(cub3d->m.map_content);
-	if (cub3d->m.path_north)
-		free(cub3d->m.path_north);
-	if (cub3d->m.path_east)
-		free(cub3d->m.path_east);
-	if (cub3d->m.path_south)
-		free(cub3d->m.path_south);
-	if (cub3d->m.path_west)
-		free(cub3d->m.path_west);
+	if (cub3d->t.path_north)
+		free(cub3d->t.path_north);
+	if (cub3d->t.path_east)
+		free(cub3d->t.path_east);
+	if (cub3d->t.path_south)
+		free(cub3d->t.path_south);
+	if (cub3d->t.path_west)
+		free(cub3d->t.path_west);
 	if (cub3d->m.floor_color)
 		free(cub3d->m.floor_color);
 	if (cub3d->m.ceiling_color)
