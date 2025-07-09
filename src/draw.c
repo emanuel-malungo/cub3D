@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 12:40:59 by emalungo          #+#    #+#             */
-/*   Updated: 2025/07/08 13:16:19 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/07/09 15:17:43 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	draw_square(t_cub3d *cub3d, int x, int y, int size, int color)
 		while (j < x + size)
 		{
 			if (i >= 0 && i < HEIGHT_SCREEN && j >= 0 && j < WIDTH_SCREEN)
-				my_mlx_pixel_put(&cub3d->i.img, j, i, color);
+				my_mlx_pixel_put(&cub3d->i, j, i, color);
 			j++;
 		}
 	}
@@ -47,7 +47,7 @@ void	draw_vertical_line(t_cub3d *cub3d, int x, int drawStart, int drawEnd, int c
 	y = drawStart;
 	while (y <= drawEnd)
 	{
-		my_mlx_pixel_put(&cub3d->i.img, x, y, color);
+		my_mlx_pixel_put(&cub3d->i, x, y, color);
 		y++;
 	}
 }
@@ -64,9 +64,9 @@ void	draw_background(t_cub3d *cub3d)
 		while (x < WIDTH_SCREEN)
 		{
 			if (y < HEIGHT_SCREEN / 2)
-				my_mlx_pixel_put(&cub3d->i.img, x, y, 0x6CB8DD);
+				my_mlx_pixel_put(&cub3d->i, x, y, 0x6CB8DD);
 			else
-				my_mlx_pixel_put(&cub3d->i.img, x, y, 0x4A4A4A);
+				my_mlx_pixel_put(&cub3d->i, x, y, 0x4A4A4A);
 			x++;
 		}
         y++;

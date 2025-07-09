@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 12:36:04 by emalungo          #+#    #+#             */
-/*   Updated: 2025/07/08 13:26:39 by emalungo         ###   ########.fr       */
+/*   Updated: 2025/07/09 15:17:42 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	draw_texture_line(t_cub3d *cub3d, int x, t_ray *ray, double wallX)
 		texY = (int)texPos & (texture->height - 1);
 		texPos += step;
 		color = get_pixel_color(texture, texX, texY);
-		my_mlx_pixel_put(&cub3d->i.img, x, y, color);
+		my_mlx_pixel_put(&cub3d->i, x, y, color);
 		y++;
 	}
 }
