@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emalungo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 10:30:23 by emalungo          #+#    #+#             */
-/*   Updated: 2025/06/26 14:11:07 by emalungo         ###   ########.fr       */
+/*   Updated: 2024/05/20 10:30:59 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ static int	capture_the_beast(const char *str, int neg_flag, int i)
 	previous_result = 0;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		if (result < 0 || result > 255)
-			return(-1);
 		previous_result = result;
 		result = result * 10 + str[i++] - '0';
 		if (previous_result > result)
